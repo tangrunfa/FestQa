@@ -14,6 +14,8 @@ import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.net.RestClient;
 import com.example.tyz.latte.net.callback.ISucces;
 import com.example.tyz.latte.util.log.LatteLogger;
+import com.example.tyz.latte.wechat.LatteWeChat;
+import com.example.tyz.latte.wechat.callbacks.IWeChatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,7 +37,17 @@ public class SignInDelegate extends Lattedelegate {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof ISignListener)
-            mISignListener= (ISignListener) activity;
+            mISignListener = (ISignListener) activity;
+    }
+
+    @OnClick(R2.id.icon_sign_in_wechat)
+    void onClickWeChat() {
+        LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userinfo) {
+
+            }
+        }).signIn();
     }
 
     @OnClick(R2.id.btn_sign_in)

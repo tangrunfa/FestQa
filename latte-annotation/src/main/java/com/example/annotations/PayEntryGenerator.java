@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 /**
  * Created by Administrator on 2017/10/12.
  */
-@Target(ElementType.TYPE)//作用于类
-@Retention(RetentionPolicy.SOURCE) //源码阶段
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.SOURCE)
 public @interface PayEntryGenerator {
     String packageName();
-    Class <?> payEntryTemplate();
+    Class<?> payEntryTemplate();
 }

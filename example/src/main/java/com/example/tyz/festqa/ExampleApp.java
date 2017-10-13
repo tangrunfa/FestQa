@@ -24,6 +24,8 @@ public class ExampleApp extends Application {
             latte.init(this).withIcon(new FontAwesomeModule()).withIcon(new FontEcModul())
                     .withApiHost("http:127.0.0.1/")
                     .withInterceptor(new DebugInterceptor("test", R.raw.test))
+                    .withWeChatAppId("")
+                    .withWeChatAppSecret("")
                    .congfigure();
             DatabaseManager.getInstance().init(this);
             initStetho();

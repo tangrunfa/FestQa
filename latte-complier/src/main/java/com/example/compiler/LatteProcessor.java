@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -24,42 +25,44 @@ import javax.lang.model.element.TypeElement;
  * Created by Administrator on 2017/10/12.
  */
 @SuppressWarnings("unused")
-@AutoService(Process.class)
-public class LatteProcessor extends AbstractProcessor {
-
-
-    @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        generateAppRegisterCode(roundEnv);
-        generateEntryCode(roundEnv);
-        generatePayEntryCode(roundEnv);
-        return true;
-    }
+@AutoService(Processor.class)
+public final class LatteProcessor extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         final Set<String> types = new LinkedHashSet<>();
         final Set<Class<? extends Annotation>> supportAnnotations = getSupportedAnnotations();
-        for (Class<? extends Annotation> annotaion : supportAnnotations) {
-            types.add(annotaion.getCanonicalName());
+        for (Class<? extends Annotation> annotation : supportAnnotations) {
+            types.add(annotation.getCanonicalName());
         }
         return types;
     }
 
     private Set<Class<? extends Annotation>> getSupportedAnnotations() {
-        final Set<Class<? extends Annotation>> annotion = new LinkedHashSet<>();
-        annotion.add(EntryGenerator.class);
-        annotion.add(PayEntryGenerator.class);
-        annotion.add(AppRegisterGenerator.class);
-        return annotion;
+        final Set<Class<? extends Annotation>> annotations = new LinkedHashSet<>();
+        annotations.add(EntryGenerator.class);
+        annotations.add(PayEntryGenerator.class);
+        annotations.add(AppRegisterGenerator.class);
+        return annotations;
     }
 
-    private void scan(RoundEnvironment ev, Class<? extends Annotation> annotation,
+    @Override
+    public boolean process(Set<? extends TypeElement> set, RoundEnvironment env) {
+        generateEntryCode(env);
+        generatePayEntryCode(env);
+        generateAppRegisterCode(env);
+        return true;
+    }
+
+    private void scan(RoundEnvironment env,
+                      Class<? extends Annotation> annotation,
                       AnnotationValueVisitor visitor) {
-        for (Element typeElement : ev.getElementsAnnotatedWith(annotation)) {
-            final List<? extends AnnotationMirror> annotationMIrrors = typeElement.getAnnotationMirrors();
-            for (AnnotationMirror annotationMirror : annotationMIrrors
-                    ) {
+
+        for (Element typeElement : env.getElementsAnnotatedWith(annotation)) {
+            final List<? extends AnnotationMirror> annotationMirrors =
+                    typeElement.getAnnotationMirrors();
+
+            for (AnnotationMirror annotationMirror : annotationMirrors) {
                 final Map<? extends ExecutableElement, ? extends AnnotationValue> elementValues
                         = annotationMirror.getElementValues();
 
@@ -69,26 +72,23 @@ public class LatteProcessor extends AbstractProcessor {
                 }
             }
         }
-
     }
 
     private void generateEntryCode(RoundEnvironment env) {
-        final EntryVisitor entryVisitor = new EntryVisitor();
-        entryVisitor.setFiler(processingEnv.getFiler());
+        final EntryVisitor entryVisitor =
+                new EntryVisitor(processingEnv.getFiler());
         scan(env, EntryGenerator.class, entryVisitor);
     }
 
     private void generatePayEntryCode(RoundEnvironment env) {
-        final PayEntryVisitor payEntryVisitor = new PayEntryVisitor();
-        payEntryVisitor.setFiler(processingEnv.getFiler());
+        final PayEntryVisitor payEntryVisitor =
+                new PayEntryVisitor(processingEnv.getFiler());
         scan(env, PayEntryGenerator.class, payEntryVisitor);
-
     }
 
     private void generateAppRegisterCode(RoundEnvironment env) {
-        final AppRegisterVisitor appRegisterVisitor = new AppRegisterVisitor();
-        appRegisterVisitor.setFiler(processingEnv.getFiler());
+        final AppRegisterVisitor appRegisterVisitor =
+                new AppRegisterVisitor(processingEnv.getFiler());
         scan(env, AppRegisterGenerator.class, appRegisterVisitor);
-
     }
 }

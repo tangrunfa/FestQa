@@ -15,38 +15,40 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor7;
  * Created by Administrator on 2017/10/12.
  */
 
-public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void,Void> {
-    private  Filer mFiler=null;
-    private String mPackageName = null;
-    private TypeMirror mTypeMirror=null;
+final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
 
-    public void setFiler(Filer filer){
-        this.mFiler=filer;
+    private final Filer FILER;
+    private String mPackageName = null;
+
+    EntryVisitor(Filer FILER) {
+        this.FILER = FILER;
     }
 
     @Override
     public Void visitString(String s, Void p) {
-        mPackageName=s;
+        mPackageName = s;
         return p;
     }
 
     @Override
     public Void visitType(TypeMirror t, Void p) {
-        mTypeMirror=t;
+        generateJavaCode(t);
         return p;
     }
 
-    private void  generateJavaCode(){
-        final TypeSpec targetActivity=TypeSpec.classBuilder("WXEntryActivity")
-                .addModifiers(Modifier.PUBLIC)
-                .addModifiers(Modifier.FINAL)
-                .superclass(TypeName.get(mTypeMirror))
-                .build();
-        final JavaFile javaFile=JavaFile.builder(mPackageName+"wxapi",targetActivity)
+    private void generateJavaCode(TypeMirror typeMirror) {
+        final TypeSpec targetActivity =
+                TypeSpec.classBuilder("WXEntryActivity")
+                        .addModifiers(Modifier.PUBLIC)
+                        .addModifiers(Modifier.FINAL)
+                        .superclass(TypeName.get(typeMirror))
+                        .build();
+
+        final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
                 .addFileComment("微信入口文件")
                 .build();
         try {
-            javaFile.writeTo(mFiler);
+            javaFile.writeTo(FILER);
         } catch (IOException e) {
             e.printStackTrace();
         }
