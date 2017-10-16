@@ -1,15 +1,22 @@
 package com.example.tyz.latte.wechat.templates;
 
-import com.example.tyz.latte.activites.ProxyActivity;
-import com.example.tyz.latte.delegate.Lattedelegate;
+import com.example.tyz.latte.wechat.BaseWXEntryActivity;
+import com.example.tyz.latte.wechat.LatteWeChat;
 
 /**
  * Created by Administrator on 2017/10/12.
  */
 
-public class WXEntryTemplate extends ProxyActivity {
+public class WXEntryTemplate extends BaseWXEntryActivity {
     @Override
-    public Lattedelegate setrootDelegate() {
-        return null;
+    protected void onResume() {
+        super.onResume();
+        finish();
+        overridePendingTransition(0,0);
+    }
+
+    @Override
+    protected void onSignInSuccess(String userInfo) {
+        LatteWeChat.getInstance().getSignInCallback().onSignInSuccess(userInfo);
     }
 }

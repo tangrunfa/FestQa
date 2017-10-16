@@ -12,12 +12,12 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
 final class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
-    private  Filer mFiler=null;
-    private String mPackageName = null;
-    private TypeMirror mTypeMirror=null;
 
-    public void setFiler(Filer filer){
-        this.mFiler=filer;
+    private final Filer FILER;
+    private String mPackageName = null;
+
+    AppRegisterVisitor(Filer FILER) {
+        this.FILER = FILER;
     }
 
     @Override
@@ -41,10 +41,10 @@ final class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void>
                         .build();
 
         final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
-                .addFileComment("wxRegister file ")
+                .addFileComment("wxregister")
                 .build();
         try {
-            javaFile.writeTo(mFiler);
+            javaFile.writeTo(FILER);
         } catch (IOException e) {
             e.printStackTrace();
         }

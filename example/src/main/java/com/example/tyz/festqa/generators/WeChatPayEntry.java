@@ -7,6 +7,7 @@ import com.example.tyz.latte.wechat.templates.WXPayEntryTemplate;
 /**
  * Created by Administrator on 2017/10/12.
  */
+@SuppressWarnings("unused")
 @PayEntryGenerator(
         packageName = "com.example.tyz.festqa",
         payEntryTemplate = WXPayEntryTemplate.class

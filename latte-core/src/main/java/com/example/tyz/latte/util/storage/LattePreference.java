@@ -5,7 +5,8 @@ import android.preference.PreferenceManager;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.tyz.latte.app.latte;
+import com.example.tyz.latte.app.Latte;
+
 
 /**
  * Created by 傅令杰 on 2017/4/22
@@ -20,7 +21,7 @@ public final class LattePreference {
      * Context.getSharedPreferences(String name,int mode)生成name.xml
      */
     private static final SharedPreferences PREFERENCES =
-            PreferenceManager.getDefaultSharedPreferences(latte.getApplicationContext());
+            PreferenceManager.getDefaultSharedPreferences(Latte.getApplicationContext());
     private static final String APP_PREFERENCES_KEY = "profile";
 
     private static SharedPreferences getAppPreference() {

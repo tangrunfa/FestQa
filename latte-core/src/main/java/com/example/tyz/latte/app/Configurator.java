@@ -1,5 +1,8 @@
 package com.example.tyz.latte.app;
 
+import android.app.Activity;
+import android.os.Handler;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -16,10 +19,10 @@ public class Configurator {
     private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor>  INTERCEPTORS=new ArrayList<>();
-
+    private static final Handler HANDLER = new Handler();
     private Configurator() {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
-
+        LATTE_CONFIGS.put(ConfigType.HANDLER.name(), HANDLER);
     }
 
     private static class Holder {
@@ -43,6 +46,21 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
         return this;
     }
+    public final Configurator withWeChatAppId(String appId) {
+        LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_ID.name(), appId);
+        return this;
+    }
+
+    public final Configurator withWeChatAppSecret(String appSecret) {
+        LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET.name(), appSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigType.ACTIVITY.name(), activity);
+        return this;
+    }
+
     public final Configurator withInterceptor(Interceptor interceptor){
         INTERCEPTORS.add(interceptor);
         LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);

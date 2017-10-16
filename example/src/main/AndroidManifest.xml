@@ -22,6 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            <activity android:name=".wxapi.WXEntryActivity"
+                android:exported="true"
+                android:launchMode="singleTop"
+                android:label="微信回调"
+                android:screenOrientation="portrait"
+                android:theme="@style/Theme.AppCompat.newTranslucent">
+                <intent-filter>
+                    <action android:name="android.intent.action.VIEW"></action>
+                        <category android:name="android.intent.category.DEFAULT"></category>
+                </intent-filter>
+
+            </activity>
     </application>
 
 </manifest>

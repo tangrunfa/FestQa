@@ -9,6 +9,7 @@ package com.example.tyz.festqa.generators;
 import com.example.annotations.EntryGenerator;
 import com.example.tyz.latte.wechat.templates.WXEntryTemplate;
 
+@SuppressWarnings("unused")
 @EntryGenerator(
         packageName = "com.example.tyz.festqa",
         entryTemplate = WXEntryTemplate.class
