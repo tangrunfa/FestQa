@@ -1,7 +1,8 @@
 package com.example.tyz.latte.net;
 
 import com.example.tyz.latte.app.ConfigType;
-import com.example.tyz.latte.app.latte;
+import com.example.tyz.latte.app.Latte;
+
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
@@ -32,7 +33,7 @@ public class RestCreator {
      * 构建全局Retrofit客户端
      */
     private  static final class Retrofitholder{
-        private static final String BASE_URL = latte.getConfiguration(ConfigType.API_HOST.name());
+        private static final String BASE_URL = Latte.getConfiguration(ConfigType.API_HOST.name());
         private static final Retrofit RETROFIT_CLIENT=new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(new OKhttpHolder().OK_HTTP_CLIENT)
@@ -47,7 +48,7 @@ public class RestCreator {
         private static final int TIME_OUT = 60;
 
         private static final OkHttpClient.Builder BUILDER=new OkHttpClient.Builder();
-        private static final ArrayList<Interceptor> INTERCEPTORS=latte.getConfiguration(ConfigType.INTERCEPTOR.name());
+        private static final ArrayList<Interceptor> INTERCEPTORS=Latte.getConfiguration(ConfigType.INTERCEPTOR.name());
 
         private static final OkHttpClient.Builder addInterceptor(){
             if (INTERCEPTORS!=null&&!INTERCEPTORS.isEmpty()){

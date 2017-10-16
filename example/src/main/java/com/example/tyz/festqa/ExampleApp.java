@@ -2,7 +2,7 @@ package com.example.tyz.festqa;
 
 import android.app.Application;
 
-import com.example.tyz.latte.app.latte;
+import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.ec.database.DatabaseManager;
 import com.example.tyz.latte.ec.icon.FontEcModul;
 import com.example.tyz.latte.net.interceptor.DebugInterceptor;
@@ -21,7 +21,7 @@ public class ExampleApp extends Application {
 
         super.onCreate();
         try {
-            latte.init(this).withIcon(new FontAwesomeModule()).withIcon(new FontEcModul())
+            Latte.init(this).withIcon(new FontAwesomeModule()).withIcon(new FontEcModul())
                     .withApiHost("http:127.0.0.1/")
                     .withInterceptor(new DebugInterceptor("test", R.raw.test))
                     .withWeChatAppId("")

@@ -1,10 +1,11 @@
 package com.example.tyz.latte.net.download;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.example.tyz.latte.app.latte;
+import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.net.callback.IRequest;
 import com.example.tyz.latte.net.callback.ISucces;
 import com.example.tyz.latte.ui.file.FileUtil;
@@ -68,7 +69,7 @@ public class SaveFileTask extends AsyncTask<Object, Void, File> {
             install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             install.setAction(Intent.ACTION_VIEW);
             install.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            latte.getApplicationContext().startActivity(install);
+            Latte.getApplicationContext().startActivity(install);
 
         }
     }

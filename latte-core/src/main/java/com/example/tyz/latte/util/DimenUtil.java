@@ -3,7 +3,7 @@ package com.example.tyz.latte.util;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-import com.example.tyz.latte.app.latte;
+import com.example.tyz.latte.app.Latte;
 
 /**
  * Created by Administrator on 2017/9/26.
@@ -11,12 +11,12 @@ import com.example.tyz.latte.app.latte;
 
 public class DimenUtil {
     public static int getScreenWidth(){
-        final Resources resources= latte.getApplicationContext().getResources();
+        final Resources resources= Latte.getApplicationContext().getResources();
         final DisplayMetrics dm=resources.getDisplayMetrics();
         return dm.widthPixels;
     }
     public static int getScreenHeight(){
-        final Resources resources= latte.getApplicationContext().getResources();
+        final Resources resources= Latte.getApplicationContext().getResources();
         final DisplayMetrics dm=resources.getDisplayMetrics();
         return dm.heightPixels;
     }
