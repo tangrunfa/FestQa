@@ -9,7 +9,7 @@ import com.example.tyz.latte.activites.ProxyActivity;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.launcher.LauncherDelegate;
-import com.example.tyz.latte.ec.main.index.EcBottomDelegate;
+import com.example.tyz.latte.ec.main.EcBottomDelegate;
 import com.example.tyz.latte.ec.sign.ISignListener;
 import com.example.tyz.latte.ui.launcher.ILauncherListener;
 import com.example.tyz.latte.ui.launcher.OnLauncherFinishTag;
