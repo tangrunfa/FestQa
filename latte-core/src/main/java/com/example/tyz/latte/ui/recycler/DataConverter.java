@@ -3,6 +3,7 @@ package com.example.tyz.latte.ui.recycler;
 import java.util.ArrayList;
 
 /**
+ * 处理数据的模板
  * Created by TYZ on 2017/10/17.
  */
 
@@ -23,7 +24,7 @@ public abstract class DataConverter {
         return mJsonData;
     }
 
-    public DataConverter setmJsonData(String mJsonData) {
+    public DataConverter setJsonData(String mJsonData) {
         this.mJsonData = mJsonData;
         return this;
     }

@@ -21,7 +21,7 @@ public class LatteLoader {
     private static final int LOADER_SIZE_SCALE = 8;
     private static final int LOADER_OFFSET_SCALE = 10;
     private static final ArrayList<AppCompatDialog> LOADERS = new ArrayList<>();
-    private static final String DEFAULT_LOADER = LoaderStyle.BallSpinFadeLoaderIndicator.name();
+    private static final String DEFAULT_LOADER = LoaderStyle.BallPulseIndicator.name();
 
     public static void showLoading(Context context, Enum<LoaderStyle> type) {
         showLoading(context,type.name());
@@ -54,6 +54,15 @@ public class LatteLoader {
         showLoading(context, DEFAULT_LOADER);
     }
     public  static void stopshowDailog(){
+        for (AppCompatDialog dialog : LOADERS) {
+            if (dialog != null) {
+                if (dialog.isShowing()) {
+                    dialog.cancel();
+                }
+            }
+        }
+    }
+    public static void stopLoading() {
         for (AppCompatDialog dialog : LOADERS) {
             if (dialog != null) {
                 if (dialog.isShowing()) {

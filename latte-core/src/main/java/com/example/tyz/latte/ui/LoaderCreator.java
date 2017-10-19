@@ -16,11 +16,13 @@ public class LoaderCreator {
 
     static AVLoadingIndicatorView create(String type, Context context) {
         final AVLoadingIndicatorView avLoadingIndicatorView = new AVLoadingIndicatorView(context);
-        if (LOADING_MAP.get(type)==null){
-final Indicator indicator=getIndicator(type);
-            LOADING_MAP.put(type,indicator);
+        if (LOADING_MAP.get(type) == null) {
+            final Indicator indicator = getIndicator(type);
+            LOADING_MAP.put(type, indicator);
         }
+
         avLoadingIndicatorView.setIndicator(LOADING_MAP.get(type));
+
         return avLoadingIndicatorView;
     }
 
@@ -29,7 +31,7 @@ final Indicator indicator=getIndicator(type);
             return null;
         }
         final StringBuffer drawbleClassName = new StringBuffer();
-        if (name.contains(".")) {
+        if (!name.contains(".")) {
             final String defaultPackName = AVLoadingIndicatorView.class.getPackage().getName();
             drawbleClassName.append(defaultPackName)
                     .append(".indicators")
