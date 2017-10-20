@@ -22,7 +22,7 @@ import butterknife.BindView;
  * Created by TYZ on 2017/10/18.
  */
 
-public class VerticalListDelegate extends Lattedelegate {
+public class VerticalListDelegate extends Lattedelegate  {
 
     @BindView(R2.id.rv_vertical_menu_list)
     RecyclerView mRecyclerView = null;
@@ -61,4 +61,6 @@ public class VerticalListDelegate extends Lattedelegate {
                 .build()
                 .get();
     }
+
+
 }

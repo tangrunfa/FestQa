@@ -53,6 +53,11 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_ID.name(), appId);
         return this;
     }
+    //浏览器加载的HOST
+    public Configurator withWebHost(String host) {
+        LATTE_CONFIGS.put(ConfigType.WEB_HOST.name(), host);
+        return this;
+    }
 
     public final Configurator withWeChatAppSecret(String appSecret) {
         LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET.name(), appSecret);

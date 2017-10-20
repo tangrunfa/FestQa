@@ -7,6 +7,7 @@ import com.example.tyz.latte.delegate.web.event.TestEvent;
 import com.example.tyz.latte.ec.database.DatabaseManager;
 import com.example.tyz.latte.ec.icon.FontEcModul;
 import com.example.tyz.latte.net.interceptor.DebugInterceptor;
+import com.example.tyz.latte.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -29,6 +30,9 @@ public class ExampleApp extends Application {
                     .withWeChatAppId("")
                     .withJavascriptInterface("latte")
                     .withWebEvent("test", new TestEvent())
+                    //添加cookie 同步的拦截器
+                    .withWebHost("http://www.baidu.com/")
+                    .withInterceptor(new AddCookieInterceptor())
                     .withWeChatAppSecret("")
                    .congfigure();
             DatabaseManager.getInstance().init(this);
