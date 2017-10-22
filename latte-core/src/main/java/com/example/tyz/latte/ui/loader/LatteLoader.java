@@ -1,4 +1,4 @@
-package com.example.administrator.latte.ui;
+package com.example.tyz.latte.ui.loader;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;

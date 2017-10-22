@@ -11,8 +11,8 @@ import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.launcher.LauncherDelegate;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
 import com.example.tyz.latte.ec.sign.ISignListener;
-import com.example.tyz.latte.ui.launcher.ILauncherListener;
-import com.example.tyz.latte.ui.launcher.OnLauncherFinishTag;
+import com.example.administrator.latte_ui.ui.launcher.ILauncherListener;
+import com.example.administrator.latte_ui.ui.launcher.OnLauncherFinishTag;
 
 import qiu.niorgai.StatusBarCompat;
 
@@ -21,6 +21,11 @@ import qiu.niorgai.StatusBarCompat;
  */
 
 public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener{
+    @Override
+    public Lattedelegate setRootDelegate() {
+        return  new LauncherDelegate();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +37,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         StatusBarCompat.translucentStatusBar(this,true);//沉浸式状态栏
     }
 
-    @Override
-    public Lattedelegate setrootDelegate() {
-        return new LauncherDelegate();
-    }
+
 
     @Override
     public void onSignInSuccess() {
@@ -53,7 +55,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-                startWithPop(new EcBottomDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();

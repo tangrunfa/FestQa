@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.recycler;
+package com.example.administrator.latte.ui.recycler;
 
 import android.support.annotation.ColorInt;
 

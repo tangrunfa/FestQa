@@ -6,12 +6,14 @@ import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+
 import com.example.tyz.latte.app.ConfigType;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.delegate.IPageLoadListener;
 import com.example.tyz.latte.delegate.web.WebDelegate;
 import com.example.tyz.latte.delegate.web.route.Router;
-import com.example.tyz.latte.ui.LatteLoader;
+
+import com.example.tyz.latte.ui.loader.LatteLoader;
 import com.example.tyz.latte.util.storage.LattePreference;
 
 /**
@@ -42,7 +44,7 @@ public class WebViewClientImpl extends WebViewClient {
          /*
           注意，这里的Cookie和API请求的Cookie是不一样的，这个在网页不可见
          */
-         final  String webhost=Latte.getConfiguration(ConfigType.WEB_HOST);
+         final  String webhost=Latte.getConfiguration(ConfigType.WEB_HOST.name());
         if (webhost!=null){
             if (cookieManager.hasCookies()){
                 final String cookstr=cookieManager.getCookie(webhost);

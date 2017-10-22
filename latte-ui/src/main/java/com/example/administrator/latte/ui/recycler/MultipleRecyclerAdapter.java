@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.recycler;
+package com.example.administrator.latte.ui.recycler;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -11,8 +11,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.example.tyz.latte.R;
-import com.example.administrator.latte_ui.ui.banner.BannerCreator;
+
+import com.example.administrator.latte.ui.banner.BannerCreator;
+import com.example.administrator.latte_ui.R;
 
 import java.util.ArrayList;
 import java.util.List;

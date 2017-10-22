@@ -79,7 +79,7 @@ dependencies {
     provided 'com.google.auto.value:auto-value:1.4.1'
     annotationProcessor "com.google.auto.value:auto-value:1.4.1"
     //c沉浸式状态栏
-    compile ('com.github.niorgai:StatusBarCompat:2.1.4', {
+    compile('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
     //RxJava

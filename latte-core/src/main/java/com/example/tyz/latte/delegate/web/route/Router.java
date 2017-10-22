@@ -36,7 +36,7 @@ public class Router {
         final Lattedelegate topdeledate = delegate.getTopDelegate();
         final WebDelegate webDelegate = WebDelegateImpl.create(url);
 
-        topdeledate.start(webDelegate);
+        topdeledate.getSupportDelegate().start(webDelegate);
 
         return true;
     }

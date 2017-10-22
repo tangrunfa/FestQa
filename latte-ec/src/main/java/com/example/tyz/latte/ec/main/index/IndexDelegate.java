@@ -14,8 +14,8 @@ import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
-import com.example.tyz.latte.ui.recycler.BaseDecoration;
-import com.example.tyz.latte.ui.refresh.RefreshHandler;
+import com.example.administrator.latte_ui.ui.recycler.BaseDecoration;
+import com.example.administrator.latte_ui.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;

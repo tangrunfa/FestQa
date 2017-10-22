@@ -5,4 +5,5 @@ package com.example.tyz.latte.ec.main.cart;
  */
 
 public interface ICartItemListener {
+    void onItemClick(double itemTotalPrice);
 }

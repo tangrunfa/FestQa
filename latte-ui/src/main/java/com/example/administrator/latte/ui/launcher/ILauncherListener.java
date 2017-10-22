@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.launcher;
+package com.example.administrator.latte.ui.launcher;
 
 /**
  * Created by Administrator on 2017/10/11.

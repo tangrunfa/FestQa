@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.recycler;
+package com.example.administrator.latte.ui.recycler;
 
 /**
  * Created by Administrator on 2017/10/17.

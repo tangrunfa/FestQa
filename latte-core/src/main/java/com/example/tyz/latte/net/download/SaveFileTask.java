@@ -1,6 +1,5 @@
 package com.example.tyz.latte.net.download;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -8,7 +7,8 @@ import android.os.AsyncTask;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.net.callback.IRequest;
 import com.example.tyz.latte.net.callback.ISucces;
-import com.example.tyz.latte.ui.file.FileUtil;
+import com.example.tyz.latte.util.file.FileUtil;
+
 
 import java.io.File;
 import java.io.InputStream;
