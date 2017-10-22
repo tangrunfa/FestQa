@@ -2,7 +2,10 @@ package com.example.tyz.latte.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
+import com.example.tyz.latte.delegate.web.event.Event;
+import com.example.tyz.latte.delegate.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -50,11 +53,28 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_ID.name(), appId);
         return this;
     }
+    //浏览器加载的HOST
+    public Configurator withWebHost(String host) {
+        LATTE_CONFIGS.put(ConfigType.WEB_HOST.name(), host);
+        return this;
+    }
 
     public final Configurator withWeChatAppSecret(String appSecret) {
         LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET.name(), appSecret);
         return this;
     }
+
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(), name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+        return this;
+    }
+
 
     public final Configurator withActivity(Activity activity) {
         LATTE_CONFIGS.put(ConfigType.ACTIVITY.name(), activity);
