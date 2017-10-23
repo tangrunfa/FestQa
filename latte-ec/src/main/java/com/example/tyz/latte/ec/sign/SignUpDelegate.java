@@ -12,8 +12,6 @@ import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.net.RestClient;
-import com.example.tyz.latte.net.callback.IError;
-import com.example.tyz.latte.net.callback.IFailure;
 import com.example.tyz.latte.net.callback.ISucces;
 import com.example.tyz.latte.util.log.LatteLogger;
 
@@ -56,7 +54,7 @@ public class SignUpDelegate extends Lattedelegate {
     void onClickSignUp() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://117.48.205.138/RestServer/api/user_profile.php")
+                    .url("http://192.168.56.1:8080/RestDataServer/api/user_profile.php")
                     .params("name", mName.getText().toString())
                     .params("email", mEmail.getText().toString())
                     .params("phone", mPhone.getText().toString())
@@ -66,18 +64,6 @@ public class SignUpDelegate extends Lattedelegate {
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
                             SignHandler.onSignUp(response,mISignListener);
-                        }
-                    })
-                    .failure(new IFailure() {
-                        @Override
-                        public void onFailure() {
-                           Toast.makeText(getContext(),"shibai",Toast.LENGTH_LONG).show();
-                        }
-                    })
-                    .error(new IError() {
-                        @Override
-                        public void onError(int code, String msg) {
-                            Toast.makeText(getContext(),"shibai",Toast.LENGTH_LONG).show();
                         }
                     })
                     .build()

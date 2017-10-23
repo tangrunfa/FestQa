@@ -2,10 +2,8 @@ package com.example.tyz.latte.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,8 +11,6 @@ import android.view.View;
 import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
-import com.example.tyz.latte.ec.main.EcBottomDelegate;
-import com.example.tyz.latte.ui.recycler.BaseDecoration;
 import com.example.tyz.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
@@ -40,33 +36,9 @@ public class IndexDelegate extends BottomItemDelegate {
 
     private RefreshHandler mRefreshHandler = null;
 
-    //初始化recyclerview
-    private void initRecyclerView() {
-        GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.addItemDecoration(
-                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_backround),5));
-        final EcBottomDelegate ecBottomDelegate=getParentDelegate();
-        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
-    }
-
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootview) {
-        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
-//        RestClient.builder()
-//                .url("http://117.48.205.138/RestServer/api/" + "index.php")
-//                .succes(new ISucces() {
-//                    @Override
-//                    public void onSuccess(String response) {
-//                        final IndexDataConverter converter = new IndexDataConverter();
-//                        converter.setmJsonData(response);
-//                        final ArrayList<MultipleItemEntity> arrayList = converter.convert();
-//                        final String imag = arrayList.get(1).getField(MultipleFields.IMAGE_URL);
-//                        Toast.makeText(getContext(), imag, Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .build()
-//                .get();
+            mRefreshHandler=new RefreshHandler(mRefreshLayout);
     }
 
     private void initRefreshLayout() {
@@ -82,8 +54,6 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
-        initRecyclerView();
-        mRefreshHandler.fristPage("index.php");
     }
 
     @Override
