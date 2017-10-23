@@ -8,8 +8,8 @@ import com.example.tyz.latte.net.callback.IRequest;
 import com.example.tyz.latte.net.callback.ISucces;
 import com.example.tyz.latte.net.callback.RequestCallbacks;
 import com.example.tyz.latte.net.download.DownloadHandler;
-import com.example.tyz.latte.ui.LatteLoader;
-import com.example.tyz.latte.ui.LoaderStyle;
+import com.example.tyz.latte.ui.loader.LatteLoader;
+import com.example.tyz.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

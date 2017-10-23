@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.refresh;
+package com.example.administrator.latte.ui.refresh;
 
 /**
  * Created by TYZ on 2017/10/18.

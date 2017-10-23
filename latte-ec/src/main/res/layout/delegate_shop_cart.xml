@@ -120,6 +120,7 @@
                 android:layout_weight="1"
                 tools:ignore="HardcodedText" />
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_shop_cart_total_price"
                 android:layout_width="0dp"
                 android:text="￥0.01"
                 android:textColor="@color/app_main"

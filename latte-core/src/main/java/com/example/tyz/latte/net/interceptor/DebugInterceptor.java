@@ -2,7 +2,8 @@ package com.example.tyz.latte.net.interceptor;
 
 import android.support.annotation.RawRes;
 
-import com.example.tyz.latte.ui.file.FileUtil;
+
+import com.example.tyz.latte.util.file.FileUtil;
 
 import java.io.IOException;
 
@@ -39,7 +40,7 @@ public class DebugInterceptor extends BaseInterceptor {
 
 
     private  Response debugResponse(Chain chain,@RawRes int rawId){
-        final String  json=FileUtil.getRawFile(rawId);
+        final String  json= FileUtil.getRawFile(rawId);
         return  getResponse(chain,json);
     }
 

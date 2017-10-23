@@ -87,7 +87,7 @@ public abstract class BaseBottomDelegate extends Lattedelegate implements View.O
             }
         }
         final SupportFragment[] delegateArry =ITEMS_DELEGATES.toArray(new SupportFragment[size]);
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArry);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArry);
     }
 
     private void resetColor(){
@@ -110,7 +110,7 @@ public abstract class BaseBottomDelegate extends Lattedelegate implements View.O
         itemICon.setTextColor(mClickColor);
         final AppCompatTextView itemTitle= (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickColor);
-        showHideFragment(ITEMS_DELEGATES.get(tag),ITEMS_DELEGATES.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEMS_DELEGATES.get(tag),ITEMS_DELEGATES.get(mCurrentDelegate));
         //注意先后顺序
         mCurrentDelegate=tag;
     }

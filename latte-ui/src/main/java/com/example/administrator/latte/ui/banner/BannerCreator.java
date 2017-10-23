@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.banner;
+package com.example.administrator.latte.ui.banner;
 
 import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;

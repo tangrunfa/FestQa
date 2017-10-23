@@ -1,4 +1,4 @@
-package com.example.administrator.latte.ui;
+package com.example.tyz.latte.ui.loader;
 
 /**
  * Created by Administrator on 2017/9/26.

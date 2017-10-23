@@ -5,17 +5,21 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.example.administrator.latte.ui.recycler.ItemType;
+import com.example.administrator.latte.ui.recycler.MultipleFields;
+import com.example.administrator.latte.ui.recycler.MultipleItemEntity;
+import com.example.administrator.latte.ui.recycler.MultipleRecyclerAdapter;
+import com.example.administrator.latte.ui.recycler.MultipleViewHolder;
 import com.example.tyz.latte.delegate.Lattedelegate;
+
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.main.sort.SortDelegate;
 import com.example.tyz.latte.ec.main.sort.content.ContentDelegate;
-import com.example.tyz.latte.ui.recycler.ItemType;
-import com.example.tyz.latte.ui.recycler.MultipleFields;
-import com.example.tyz.latte.ui.recycler.MultipleItemEntity;
-import com.example.tyz.latte.ui.recycler.MultipleRecyclerAdapter;
-import com.example.tyz.latte.ui.recycler.MultipleViewHolder;
+
 
 import java.util.List;
+
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * Created by TYZ on 2017/10/18.
@@ -25,7 +29,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     private final SortDelegate DELEGATE;
     private int mPrePosition = 0;
 
-    protected SortRecyclerAdapter(List<MultipleItemEntity> data,SortDelegate delegate) {
+    protected SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
         super(data);
         this.DELEGATE=delegate;
         addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_vertical_menu_list);
@@ -67,7 +71,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                 else {
                     line.setVisibility(View.VISIBLE);
                     name.setTextColor(ContextCompat.getColor(mContext,R.color.app_main));
-                    line.setBackgroundColor(ContextCompat.getColor(mContext,R.color.app_main));
+                    line.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_main));
                     itemView.setBackgroundColor(Color.WHITE);
                 }
                 holder.setText(R.id.tv_vertical_item_name,text);
@@ -84,9 +88,10 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(ContentDelegate delegate){
-        final Lattedelegate lattedelegate=DELEGATE.findChildFragment(ContentDelegate.class);
-        if (lattedelegate!=null){
-            lattedelegate.replaceFragment(delegate,false);
+        final Lattedelegate contentDelegate =
+                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(), ContentDelegate.class);
+        if (contentDelegate != null) {
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
         }
     }
 }

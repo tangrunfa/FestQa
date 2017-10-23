@@ -16,7 +16,7 @@ import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.net.RestClient;
 import com.example.tyz.latte.net.callback.ISucces;
-import com.example.tyz.latte.ui.recycler.MultipleItemEntity;
+import com.example.administrator.latte_ui.ui.recycler.MultipleItemEntity;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import butterknife.OnClick;
  * Created by TYZ on 2017/10/20.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISucces {
+public class ShopCartDelegate extends BottomItemDelegate implements ISucces,ICartItemListener {
 
     private ShopCartAdapter mAdapter = null;
     //购物车数量标记
@@ -42,6 +42,9 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISucces {
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
+    @BindView(R2.id.tv_shop_cart_total_price)
+    AppCompatTextView mTvTotalPrice = null;
+
 
     @OnClick(R2.id.icon_shop_cart_select_all)
     void OnClickSelectAll() {
@@ -153,9 +156,14 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISucces {
         final ArrayList<MultipleItemEntity> data = new ShopCartDataConverter().setJsonData(response).convert();
         mAdapter = new ShopCartAdapter(data);
         mRecyclerView.setAdapter(mAdapter);
-
+        mTotalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
         checkItemCount();
     }
 
 
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
+    }
 }

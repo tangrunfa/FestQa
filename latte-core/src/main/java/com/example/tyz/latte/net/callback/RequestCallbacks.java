@@ -2,8 +2,9 @@ package com.example.tyz.latte.net.callback;
 
 import android.os.Handler;
 
-import com.example.tyz.latte.ui.LatteLoader;
-import com.example.tyz.latte.ui.LoaderStyle;
+
+import com.example.tyz.latte.ui.loader.LatteLoader;
+import com.example.tyz.latte.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

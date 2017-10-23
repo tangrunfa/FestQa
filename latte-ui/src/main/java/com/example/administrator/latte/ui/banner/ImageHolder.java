@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.banner;
+package com.example.administrator.latte.ui.banner;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

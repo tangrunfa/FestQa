@@ -12,7 +12,7 @@ import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.ec.main.sort.SortDelegate;
 import com.example.tyz.latte.net.RestClient;
 import com.example.tyz.latte.net.callback.ISucces;
-import com.example.tyz.latte.ui.recycler.MultipleItemEntity;
+import com.example.administrator.latte_ui.ui.recycler.MultipleItemEntity;
 
 import java.util.List;
 

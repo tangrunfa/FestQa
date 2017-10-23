@@ -1,4 +1,4 @@
-package com.example.administrator.latte_ui.ui.launcher;
+package com.example.administrator.latte.ui.launcher;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

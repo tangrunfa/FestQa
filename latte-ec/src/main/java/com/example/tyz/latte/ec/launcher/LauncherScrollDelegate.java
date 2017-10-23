@@ -11,10 +11,10 @@ import com.example.tyz.latte.app.AccountManager;
 import com.example.tyz.latte.app.IUserChecker;
 import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.R;
-import com.example.tyz.latte.ui.launcher.ILauncherListener;
-import com.example.tyz.latte.ui.launcher.LauncherHolderCreator;
-import com.example.tyz.latte.ui.launcher.OnLauncherFinishTag;
-import com.example.tyz.latte.ui.launcher.ScrollLauncherTag;
+import com.example.administrator.latte_ui.ui.launcher.ILauncherListener;
+import com.example.administrator.latte_ui.ui.launcher.LauncherHolderCreator;
+import com.example.administrator.latte_ui.ui.launcher.OnLauncherFinishTag;
+import com.example.administrator.latte_ui.ui.launcher.ScrollLauncherTag;
 import com.example.tyz.latte.util.storage.LattePreference;
 
 import java.util.ArrayList;

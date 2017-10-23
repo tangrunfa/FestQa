@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.tyz.latte.ec.R;
-import com.example.tyz.latte.ui.recycler.RgbValue;
+import com.example.administrator.latte_ui.ui.recycler.RgbValue;
 
 /**
  * Created by TYZ on 2017/10/18.
