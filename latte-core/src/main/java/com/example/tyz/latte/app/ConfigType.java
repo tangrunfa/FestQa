@@ -15,6 +15,5 @@ public enum  ConfigType {
     WE_CHAT_APP_SECRET,
     ACTIVITY,
     HANDLER,
-    JAVASCRIPT_INTERFACE,
-    WEB_HOST
+    JAVASCRIPT_INTERFACE
 }
