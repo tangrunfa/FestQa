@@ -9,10 +9,12 @@ import com.example.tyz.latte.activites.ProxyActivity;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.launcher.LauncherDelegate;
-import com.example.tyz.latte.ec.main.index.EcBottomDelegate;
+import com.example.tyz.latte.ec.main.EcBottomDelegate;
 import com.example.tyz.latte.ec.sign.ISignListener;
 import com.example.tyz.latte.ui.launcher.ILauncherListener;
 import com.example.tyz.latte.ui.launcher.OnLauncherFinishTag;
+
+import qiu.niorgai.StatusBarCompat;
 
 /**
  * Created by Administrator on 2017/9/26.
@@ -27,6 +29,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this,true);//沉浸式状态栏
     }
 
     @Override
