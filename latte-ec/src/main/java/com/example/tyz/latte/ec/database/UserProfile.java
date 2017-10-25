@@ -57,4 +57,5 @@ public class UserProfile {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

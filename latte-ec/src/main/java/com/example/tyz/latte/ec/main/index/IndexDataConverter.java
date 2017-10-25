@@ -2,10 +2,10 @@ package com.example.tyz.latte.ec.main.index;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.example.administrator.latte_ui.ui.recycler.DataConverter;
-import com.example.administrator.latte_ui.ui.recycler.ItemType;
-import com.example.administrator.latte_ui.ui.recycler.MultipleFields;
-import com.example.administrator.latte_ui.ui.recycler.MultipleItemEntity;
+import com.example.administrator.latte.ui.recycler.DataConverter;
+import com.example.administrator.latte.ui.recycler.ItemType;
+import com.example.administrator.latte.ui.recycler.MultipleFields;
+import com.example.administrator.latte.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 

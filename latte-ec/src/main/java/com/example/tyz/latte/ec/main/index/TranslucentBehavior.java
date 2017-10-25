@@ -8,8 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.administrator.latte.ui.recycler.RgbValue;
 import com.example.tyz.latte.ec.R;
-import com.example.administrator.latte_ui.ui.recycler.RgbValue;
+
 
 /**
  * Created by TYZ on 2017/10/18.
@@ -23,7 +24,7 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar>{
     //颜色变化速度
     private static final int SHOW_SPEED = 3;
     //定义变化的颜色
-    private final RgbValue  RGBVALUE=RgbValue.create(255,124,2);
+    private final RgbValue RGBVALUE=RgbValue.create(255,124,2);
 
     public TranslucentBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);

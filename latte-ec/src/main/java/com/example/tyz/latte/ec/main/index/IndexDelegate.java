@@ -10,12 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.administrator.latte.ui.recycler.BaseDecoration;
+import com.example.administrator.latte.ui.refresh.RefreshHandler;
 import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
-import com.example.administrator.latte_ui.ui.recycler.BaseDecoration;
-import com.example.administrator.latte_ui.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -45,7 +45,7 @@ public class IndexDelegate extends BottomItemDelegate {
         GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(
-                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_backround),5));
+                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
         final EcBottomDelegate ecBottomDelegate=getParentDelegate();
         mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }

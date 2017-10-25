@@ -11,16 +11,21 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.example.administrator.latte.ui.recycler.MultipleItemEntity;
 import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
+import com.example.tyz.latte.ec.pay.FastPay;
+import com.example.tyz.latte.ec.pay.IAlPayResultListener;
 import com.example.tyz.latte.net.RestClient;
 import com.example.tyz.latte.net.callback.ISucces;
-import com.example.administrator.latte_ui.ui.recycler.MultipleItemEntity;
+import com.example.tyz.latte.util.log.LatteLogger;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,7 +34,7 @@ import butterknife.OnClick;
  * Created by TYZ on 2017/10/20.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISucces,ICartItemListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISucces,ICartItemListener,IAlPayResultListener {
 
     private ShopCartAdapter mAdapter = null;
     //购物车数量标记
@@ -104,6 +109,44 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISucces,ICar
         mAdapter.notifyDataSetChanged();
         checkItemCount();
     }
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay() {
+        createOrder();
+    }
+
+    //创建订单，注意，和支付是没有关系的
+    private void createOrder() {
+        final String orderUrl = "你的生成订单的API";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userid",123);
+        orderParams.put("amount",0.01);
+        orderParams.put("comment","测试支付");
+        orderParams.put("type",1);
+        orderParams.put("ordertype",123);
+        orderParams.put("amount",0);
+        orderParams.put("isanonymous",true);
+        orderParams.put("follweduer",0);
+        //加入你的参数
+        RestClient.builder()
+                .url(orderUrl)
+                .loader(getContext())
+                .params(orderParams)
+                .succes(new ISucces() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+                        LatteLogger.d("ORDER", response);
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartDelegate.this)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
+                    }
+                })
+                .build()
+                .post();
+
+    }
 
     private void checkItemCount() {
         final int count = mAdapter.getItemCount();
@@ -165,5 +208,30 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISucces,ICar
     @Override
     public void onItemClick(double itemTotalPrice) {
         mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }

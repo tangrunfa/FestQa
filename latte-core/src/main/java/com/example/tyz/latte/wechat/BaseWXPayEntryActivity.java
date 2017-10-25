@@ -4,6 +4,7 @@ import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 
 /**
+ * 微信支付
  * Created by Administrator on 2017/10/22.
  */
 

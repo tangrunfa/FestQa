@@ -5,14 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
+import com.example.administrator.latte.ui.launcher.ILauncherListener;
+import com.example.administrator.latte.ui.launcher.OnLauncherFinishTag;
 import com.example.tyz.latte.activites.ProxyActivity;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.launcher.LauncherDelegate;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
 import com.example.tyz.latte.ec.sign.ISignListener;
-import com.example.administrator.latte_ui.ui.launcher.ILauncherListener;
-import com.example.administrator.latte_ui.ui.launcher.OnLauncherFinishTag;
 
 import qiu.niorgai.StatusBarCompat;
 
@@ -20,7 +20,7 @@ import qiu.niorgai.StatusBarCompat;
  * Created by Administrator on 2017/9/26.
  */
 
-public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener{
+public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener {
     @Override
     public Lattedelegate setRootDelegate() {
         return  new LauncherDelegate();

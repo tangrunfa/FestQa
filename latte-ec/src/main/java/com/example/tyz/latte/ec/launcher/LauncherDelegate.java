@@ -7,14 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.example.administrator.latte.ui.launcher.ILauncherListener;
+import com.example.administrator.latte.ui.launcher.OnLauncherFinishTag;
+import com.example.administrator.latte.ui.launcher.ScrollLauncherTag;
 import com.example.tyz.latte.app.AccountManager;
 import com.example.tyz.latte.app.IUserChecker;
 import com.example.tyz.latte.delegate.Lattedelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
-import com.example.administrator.latte_ui.ui.launcher.ILauncherListener;
-import com.example.administrator.latte_ui.ui.launcher.OnLauncherFinishTag;
-import com.example.administrator.latte_ui.ui.launcher.ScrollLauncherTag;
 import com.example.tyz.latte.util.storage.LattePreference;
 import com.example.tyz.latte.util.timer.BaseTimerTask;
 import com.example.tyz.latte.util.timer.ITimerListener;
@@ -75,7 +75,7 @@ public class LauncherDelegate extends Lattedelegate implements ITimerListener {
     //判断是否显示滑动启动页
     private void checkIsShowScroll() {
         if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
-                start(new LauncherScrollDelegate(),SINGLETASK);
+                getSupportDelegate().start(new LauncherScrollDelegate(),SINGLETASK);
         }else {
             //检查是否登录APP
             AccountManager.checkAccount(new IUserChecker() {

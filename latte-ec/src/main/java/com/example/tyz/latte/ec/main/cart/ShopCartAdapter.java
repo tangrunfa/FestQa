@@ -9,14 +9,14 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.administrator.latte.ui.recycler.MultipleFields;
+import com.example.administrator.latte.ui.recycler.MultipleItemEntity;
+import com.example.administrator.latte.ui.recycler.MultipleRecyclerAdapter;
+import com.example.administrator.latte.ui.recycler.MultipleViewHolder;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.net.RestClient;
 import com.example.tyz.latte.net.callback.ISucces;
-import com.example.administrator.latte_ui.ui.recycler.MultipleFields;
-import com.example.administrator.latte_ui.ui.recycler.MultipleItemEntity;
-import com.example.administrator.latte_ui.ui.recycler.MultipleRecyclerAdapter;
-import com.example.administrator.latte_ui.ui.recycler.MultipleViewHolder;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.List;
