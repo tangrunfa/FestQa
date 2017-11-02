@@ -1,9 +1,11 @@
 package com.example.tyz.latte.app;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.example.tyz.latte.delegate.web.event.Event;
 import com.example.tyz.latte.delegate.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -41,8 +43,10 @@ public class Configurator {
     }
 
     public void congfigure() {
+
         initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        Utils.init((Application) Latte.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {

@@ -10,10 +10,12 @@ import android.view.View;
 import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
+import com.example.tyz.latte.ec.main.personal.address.AddressDelegate;
 import com.example.tyz.latte.ec.main.personal.list.ListAdapter;
 import com.example.tyz.latte.ec.main.personal.list.ListBean;
 import com.example.tyz.latte.ec.main.personal.list.ListItemType;
 import com.example.tyz.latte.ec.main.personal.order.OrderListDelegate;
+import com.example.tyz.latte.ec.main.personal.profile.UserProfileDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,16 +38,18 @@ public class PersonalDelegate extends BottomItemDelegate {
         mArgs.putString(ORDER_TYPE, "all");
         startOrderListByType();
     }
+
+    @OnClick(R2.id.img_user_avatar)
+    void onClickAvater() {
+       getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
+    }
+
     private void startOrderListByType() {
         final OrderListDelegate delegate = new OrderListDelegate();
         delegate.setArguments(mArgs);
         getParentDelegate().getSupportDelegate().start(delegate);
     }
 
-    @OnClick(R2.id.img_user_avatar)
-    void onClickAvatar() {
-//        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
-    }
 
     @Override
     public Object setLayout() {
@@ -64,14 +68,13 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
-
+                .setDelegate(new AddressDelegate())
                 .setText("收货地址")
                 .build();
 
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
-
                 .setText("系统设置")
                 .build();
 

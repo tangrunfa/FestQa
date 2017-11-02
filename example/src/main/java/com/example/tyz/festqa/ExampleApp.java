@@ -1,6 +1,7 @@
 package com.example.tyz.festqa;
 
 import android.app.Application;
+import android.support.annotation.Nullable;
 
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.delegate.web.event.TestEvent;
@@ -8,8 +9,13 @@ import com.example.tyz.latte.ec.database.DatabaseManager;
 import com.example.tyz.latte.ec.icon.FontEcModul;
 import com.example.tyz.latte.net.interceptor.DebugInterceptor;
 import com.example.tyz.latte.net.rx.AddCookieInterceptor;
+import com.example.tyz.latte.util.callback.CallbackManager;
+import com.example.tyz.latte.util.callback.CallbackType;
+import com.example.tyz.latte.util.callback.IGlobalCallback;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -37,6 +43,31 @@ public class ExampleApp extends Application {
                    .congfigure();
             DatabaseManager.getInstance().init(this);
             initStetho();
+
+
+            //开启极光推送
+            JPushInterface.setDebugMode(true);
+            JPushInterface.init(this);
+
+            CallbackManager.getInstance()
+                    .addCallback(CallbackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                        @Override
+                        public void executeCallback(@Nullable Object args) {
+                            if (JPushInterface.isPushStopped(Latte.getApplicationContext())) {
+                                //开启极光推送
+                                JPushInterface.setDebugMode(true);
+                                JPushInterface.init(Latte.getApplicationContext());
+                            }
+                        }
+                    })
+                    .addCallback(CallbackType.TAG_STOP_PUSH, new IGlobalCallback() {
+                        @Override
+                        public void executeCallback(@Nullable Object args) {
+                            if (!JPushInterface.isPushStopped(Latte.getApplicationContext())) {
+                                JPushInterface.stopPush(Latte.getApplicationContext());
+                            }
+                        }
+                    });
         } catch (Exception e) {
             e.printStackTrace();
         }

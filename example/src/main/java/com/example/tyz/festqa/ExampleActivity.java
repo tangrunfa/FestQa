@@ -14,6 +14,7 @@ import com.example.tyz.latte.ec.launcher.LauncherDelegate;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
 import com.example.tyz.latte.ec.sign.ISignListener;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 /**
@@ -65,5 +66,17 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
                 break;
 
     }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 }
