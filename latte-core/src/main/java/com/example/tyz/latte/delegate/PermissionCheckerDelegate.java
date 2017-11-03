@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.tyz.latte.ui.camera.CameraImageBean;
 import com.example.tyz.latte.ui.camera.LatteCamera;
 import com.example.tyz.latte.ui.camera.RequestCodes;
+import com.example.tyz.latte.ui.scanner.ScannerDelegate;
 import com.example.tyz.latte.util.callback.CallbackManager;
 import com.example.tyz.latte.util.callback.CallbackType;
 import com.example.tyz.latte.util.callback.IGlobalCallback;
@@ -39,6 +40,18 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
     }
+
+    //扫描二维码(不直接调用)
+    @NeedsPermission(Manifest.permission.CAMERA)
+    void startScan(BaseDelegate delegate) {
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(), RequestCodes.SCAN);
+    }
+
+    public void startScanWithCheck(BaseDelegate delegate) {
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this, delegate);
+    }
+
+
 
     @OnPermissionDenied(Manifest.permission.CAMERA)
     void onCameraDenied() {
@@ -119,4 +132,19 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
             }
         }
     }
+
+//    @Override
+//    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+//        super.onFragmentResult(requestCode, resultCode, data);
+//        if (resultCode ==RequestCodes.SCAN){
+//            if (data!=null){
+//                final String qrcode=data.getString("SCAN_RESULT");
+////                final IGlobalCallback<String> callback=CallbackManager.getInstance()
+////                        .getCallback(CallbackType.ON_SCAN);
+////                if (callback!=null){
+////                    callback.executeCallback(qrcode);
+////                }
+//            }
+//        }
+//    }
 }

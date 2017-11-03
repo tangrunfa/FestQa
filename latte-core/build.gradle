@@ -93,4 +93,6 @@ dependencies {
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.0.1"
     //工具包
     compile 'com.blankj:utilcode:1.9.5'
+    //二维码扫描
+    compile 'me.dm7.barcodescanner:zbar:1.9.8'
 }

@@ -3,6 +3,7 @@ package com.example.tyz.festqa;
 import android.app.Application;
 import android.support.annotation.Nullable;
 
+import com.example.tyz.festqa.event.ShareEvent;
 import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.delegate.web.event.TestEvent;
 import com.example.tyz.latte.ec.database.DatabaseManager;
@@ -40,6 +41,8 @@ public class ExampleApp extends Application {
                     .withWebHost("http://www.baidu.com/")
                     .withInterceptor(new AddCookieInterceptor())
                     .withWeChatAppSecret("")
+                    .withWebEvent("test", new TestEvent())
+                    .withWebEvent("share", new ShareEvent())
                    .congfigure();
             DatabaseManager.getInstance().init(this);
             initStetho();

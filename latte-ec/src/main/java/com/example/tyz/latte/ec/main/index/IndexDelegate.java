@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.administrator.latte.ui.recycler.BaseDecoration;
 import com.example.administrator.latte.ui.refresh.RefreshHandler;
@@ -16,9 +17,13 @@ import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
+import com.example.tyz.latte.util.callback.CallbackManager;
+import com.example.tyz.latte.util.callback.CallbackType;
+import com.example.tyz.latte.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
@@ -37,6 +42,12 @@ public class IndexDelegate extends BottomItemDelegate {
     IconTextView mIconScan = null;
     @BindView(R2.id.et_search_view)
     AppCompatEditText mSearchView = null;
+
+
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
+    }
 
     private RefreshHandler mRefreshHandler = null;
 
@@ -67,6 +78,14 @@ public class IndexDelegate extends BottomItemDelegate {
 //                })
 //                .build()
 //                .get();
+
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@Nullable String args) {
+                        Toast.makeText(getContext(), "得到的二维码是" + args, Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void initRefreshLayout() {

@@ -87,6 +87,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
-//        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }
