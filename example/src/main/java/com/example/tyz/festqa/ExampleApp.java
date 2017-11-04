@@ -31,7 +31,7 @@ public class ExampleApp extends Application {
         super.onCreate();
         try {
             Latte.init(this).withIcon(new FontAwesomeModule()).withIcon(new FontEcModul())
-                    .withApiHost("http:127.0.0.1/")
+                    .withApiHost("http://114.67.145.163/RestServer/api/")
                     .withInterceptor(new DebugInterceptor("test", R.raw.test))
                     .withJavascriptInterface("latte")
                     .withWeChatAppId("")

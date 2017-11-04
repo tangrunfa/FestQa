@@ -17,6 +17,7 @@ import com.example.tyz.latte.delegate.bottom.BottomItemDelegate;
 import com.example.tyz.latte.ec.R;
 import com.example.tyz.latte.ec.R2;
 import com.example.tyz.latte.ec.main.EcBottomDelegate;
+import com.example.tyz.latte.ec.main.index.search.SearchDelegate;
 import com.example.tyz.latte.util.callback.CallbackManager;
 import com.example.tyz.latte.util.callback.CallbackType;
 import com.example.tyz.latte.util.callback.IGlobalCallback;
@@ -30,7 +31,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/10/13.
  */
 
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
@@ -111,4 +112,10 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
 
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (hasFocus) {
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
+    }
 }

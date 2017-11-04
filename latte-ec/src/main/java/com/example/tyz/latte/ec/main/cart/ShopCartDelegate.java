@@ -187,7 +187,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISucces,ICar
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         RestClient.builder()
-                .url("http://117.48.205.138/RestServer/api/" + "shop_cart.php")
+                .url("shop_cart.php")
                 .loader(getContext())
                 .succes(this)
                 .build()

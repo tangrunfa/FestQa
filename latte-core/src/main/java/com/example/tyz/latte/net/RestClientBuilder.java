@@ -2,6 +2,9 @@ package com.example.tyz.latte.net;
 
 import android.content.Context;
 
+import com.example.tyz.latte.app.ConfigType;
+import com.example.tyz.latte.app.Configurator;
+import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.net.callback.IError;
 import com.example.tyz.latte.net.callback.IFailure;
 import com.example.tyz.latte.net.callback.IRequest;
@@ -45,7 +48,7 @@ public final class RestClientBuilder {
 
 
     public final RestClientBuilder url(String url) {
-        this.mUrl = url;
+        this.mUrl =  Latte.getConfiguration(ConfigType.API_HOST.name())+url;
         return this;
     }
 //    public final RestClientBuilder params(wMap<String,Object> params){

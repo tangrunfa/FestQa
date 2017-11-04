@@ -64,7 +64,7 @@ public class SettingsDelegate extends Lattedelegate {
         final ListBean about = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
-//                .setDelegate(new AboutDelegate())
+                .setDelegate(new AboutDelegate())
                 .setText("关于")
                 .build();
 

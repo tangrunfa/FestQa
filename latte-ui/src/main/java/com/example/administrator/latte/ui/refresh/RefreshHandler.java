@@ -11,6 +11,7 @@ import com.example.tyz.latte.app.Latte;
 import com.example.tyz.latte.net.RestClient;
 import com.example.tyz.latte.net.callback.ISucces;
 import com.example.administrator.latte.ui.recycler.DataConverter;
+import com.example.tyz.latte.util.log.LatteLogger;
 
 /**
  * Created by Administrator on 2017/10/16.
@@ -54,7 +55,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
     public void fristPage(String url){
         BEAN.setmDelayed(1000);
         RestClient.builder()
-                .url("http://117.48.205.138/RestServer/api/" +url)
+                .url(url)
                 .succes(new ISucces() {
                     @Override
                     public void onSuccess(String response) {
@@ -72,6 +73,38 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
                 .build()
                 .get();
     }
+
+    private void paging(final String url) {
+        final int pageSize = BEAN.getmPageSize();
+        final int currentCount = BEAN.getmCurrentCount();
+        final int total = BEAN.getmToatal();
+        final int index = BEAN.getmPageIndex();
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+            mAdapter.loadMoreEnd(true);
+        } else {
+            Latte.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            .url(url + index)
+                            .succes(new ISucces() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    LatteLogger.json("paging", response);
+//                                    CONVERTER.clearData();
+                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    //累加数量
+                                    BEAN.setmCurrentCount(mAdapter.getData().size());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+                }
+            }, 1000);
+        }
+    }
     @Override
     public void onRefresh() {
             refresh();
@@ -79,6 +112,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
 
     @Override
     public void onLoadMoreRequested() {
-
+        paging("refresh.php?index=");
     }
 }
