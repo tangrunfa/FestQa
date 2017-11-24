@@ -45,7 +45,7 @@ public class VerticalListDelegate extends Lattedelegate  {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         RestClient.builder()
-                .url("http://117.48.205.138/RestServer/api/" +"sort_list.php")
+                .url("sort_list.php")
                 .succes(new ISucces() {
                     @Override
                     public void onSuccess(String response) {

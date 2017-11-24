@@ -59,7 +59,7 @@ public class ContentDelegate extends Lattedelegate {
 
     private void initData() {
         RestClient.builder()
-                .url("http://117.48.205.138/RestServer/api/" +"sort_content_list.php?contentId=" + mContentId)
+                .url( "sort_content_list.php?contentId=" + mContentId)
                 .succes(new ISucces() {
                     @Override
                     public void onSuccess(String response) {
