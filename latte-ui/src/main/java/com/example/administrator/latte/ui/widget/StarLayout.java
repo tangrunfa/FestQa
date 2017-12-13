@@ -47,6 +47,7 @@ public class StarLayout extends LinearLayout implements OnClickListener {
             star.setText(ICON_SELECTED);
             star.setTag(R.id.star_is_select,false);
             star.setTag(R.id.star_count,i);
+            star.setOnClickListener(this);
             STARS.add(star);
             addView(star);
         }

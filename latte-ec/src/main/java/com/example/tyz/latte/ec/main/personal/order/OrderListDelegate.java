@@ -57,6 +57,7 @@ public class OrderListDelegate extends Lattedelegate {
                     @Override
                     public void onSuccess(String response) {
                         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
+
                         mRecyclerView.setLayoutManager(manager);
                         final List<MultipleItemEntity> data =
                                 new OrderListDataConverter().setJsonData(response).convert();

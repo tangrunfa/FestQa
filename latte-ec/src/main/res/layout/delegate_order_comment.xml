@@ -65,6 +65,7 @@
 
         </com.example.administrator.latte.ui.widget.StarLayout>
 
+
     </RelativeLayout>
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/et_order_comment"
@@ -82,6 +83,7 @@
         app:item_margin="3"
         app:line_count="5"
         app:max_count="5" >
+
     </com.example.administrator.latte.ui.widget.AutoPhotoLayout>
 
 </LinearLayout>
